@@ -18,10 +18,16 @@ async function getData() {
     options
   );
 
-  console.log(
-    "Definition:",
-    response.data.results[0].lexicalEntries[0].entries[0].senses[0].definitions
-  );
+    const definitions =
+      response.data.results[0].lexicalEntries[0].entries[0].senses.map(
+        (item) => {
+          return item.definitions[0];
+        }
+      );
+
+    const newObject = Object.entries(definitions);
+
+    console.log("Definitions:", definitions);
 }
 
 getData();
